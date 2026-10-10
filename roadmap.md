@@ -1,7 +1,4 @@
 # Roadmap
-- [x] Fix broken lecture videos + descriptions
-- [x] Tutor smarter prompt
-- [x] Visual interactive roadmap
-- [x] Mic: auto-stop, errors, interrupt
-- [x] LeetCode-style practice layout
-- [x] Verify build
+- [x] Replace brokered Google sign-in with Supabase OAuth and remove its package
+- [x] Pin Nitro output to Vercel and synchronize npm lockfile
+- [ ] Verify references and production build; document Vercel setup requirements

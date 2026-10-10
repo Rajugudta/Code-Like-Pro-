@@ -2,7 +2,6 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
-import { lovable } from "@/integrations/lovable/index";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -15,6 +14,8 @@ export const Route = createFileRoute("/auth")({
       { name: "description", content: "Sign in to CodeDev to track lectures, problems, AI tutor threads and mock interviews." },
       { property: "og:title", content: "Sign in — CodeDev" },
       { property: "og:description", content: "Access your CodeDev learning studio." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: AuthPage,
@@ -47,16 +48,17 @@ function AuthPage() {
   const signInWithGoogle = async () => {
     setBusy(true);
     try {
-      const result = await lovable.auth.signInWithOAuth("google", {
-        redirect_uri: window.location.origin,
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: "google",
+        options: {
+          redirectTo: `${window.location.origin}/auth`,
+        },
       });
-      if (result.error) {
-        console.error("Google sign-in error", result.error);
-        toast.error("Google sign-in failed. Please try again.", { description: result.error.message });
+      if (error) {
+        console.error("Google sign-in error", error);
+        toast.error("Google sign-in failed. Please try again.", { description: error.message });
         return;
       }
-      if (result.redirected) return;
-      navigate({ to: "/dashboard" });
     } catch {
       toast.error("Google sign-in failed. Please try again.");
     } finally {
