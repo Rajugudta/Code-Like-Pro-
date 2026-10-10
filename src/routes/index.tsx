@@ -30,6 +30,8 @@ export const Route = createFileRoute("/")({
         content:
           "Lectures, 500+ problems, an AI tutor, human-feeling mock interviews and placement prep in one studio.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Landing,

@@ -22,3 +22,14 @@ cd <repository-name>
 npm i
 npm run dev
 ```
+
+## Deploy to Vercel
+
+Vercel builds the app with `npm run build`; Nitro is configured to generate Vercel output.
+Set these environment variables in the Vercel project for every environment you use:
+
+- `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY` for browser sign-in and data access.
+- `SUPABASE_URL` and `SUPABASE_PUBLISHABLE_KEY` for server-side database requests.
+- `LOVABLE_API_KEY` for AI tutor, resume optimization, and voice-interview AI features.
+
+Add the deployed Vercel URL to the allowed sign-in redirect URLs for your auth project, and ensure its Google sign-in provider is enabled. Never expose private keys as `VITE_` variables.

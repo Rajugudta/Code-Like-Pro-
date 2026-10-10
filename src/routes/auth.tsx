@@ -14,6 +14,8 @@ export const Route = createFileRoute("/auth")({
       { name: "description", content: "Sign in to CodeDev to track lectures, problems, AI tutor threads and mock interviews." },
       { property: "og:title", content: "Sign in — CodeDev" },
       { property: "og:description", content: "Access your CodeDev learning studio." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: AuthPage,
